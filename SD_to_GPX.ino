@@ -14,13 +14,13 @@
 double haversine(double lat1, double long1, double lat2, double long2) { // Returns distance between two coordinates
   const double R = 3963.1; // Earth's radius in miles
 
-  // Convert degrees to radians
+  // Convert degrees to radians (trig function in arduino use radians)
   double dLat = radians(lat2 - lat1);
   double dLong = radians(long2 - long1);
 
-  // Apply Haversine formula
+  // Haversine
   double a = sin(dLat / 2) * sin(dLat / 2) + cos(radians(lat1)) * cos(radians(lat2)) * sin(dLong / 2) * sin(dLong / 2);
-  double c = 2 * atan2(sqrt(a), sqrt(1 - a));
+  double c = 2 * R * sin(sqrt(a));
 
   return R * c; // Distance in miles
 }
